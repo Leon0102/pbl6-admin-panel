@@ -1,0 +1,42 @@
+<div class="vertical-navigation">
+  <mat-toolbar class="bg-emerald-400">
+    <mp-logo [height]="58"
+             style="
+      padding: 48px;
+    width: 68%;
+    "></mp-logo>
+  </mat-toolbar>
+
+  <div class="navigation-container">
+    <mat-accordion class="app-nav-accordion"
+                   multi>
+
+      <mat-nav-list>
+        <h1 matSubheader>Dashboard </h1>
+        <ng-container *ngFor="let item of SITE_ADMIN_NAVIGATION">
+          <a mat-list-item
+             [routerLink]="item.routeLink">
+            <img width="20px"
+                 height="20px"
+                 class="mr-4 icon-url"
+                 [src]="item.iconURL" />
+            <span class="whitespace-nowrap">
+              {{item.name}}
+            </span>
+          </a>
+        </ng-container>
+        <a mat-list-item
+           href="https://app.intercom.com/a/apps/h6uvlfig/users/segments/all-leads"
+           target="_blank">
+          <img width="20px"
+               height="20px"
+               class="mr-4 icon-url"
+               [src]="'/assets/svg-icons/speech-bubble-icon.svg'" />
+          <span class="whitespace-nowrap">
+            Customer Support
+          </span>
+        </a>
+      </mat-nav-list>
+    </mat-accordion>
+  </div>
+</div>

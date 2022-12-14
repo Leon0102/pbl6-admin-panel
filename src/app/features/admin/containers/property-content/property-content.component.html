@@ -1,0 +1,92 @@
+<mp-breadcrumb [firstChild]="'Property Content'"></mp-breadcrumb>
+
+<div class="">
+  <div class="rounded border shadow md:p-4 sm:p-2">
+    <div>
+      <div class="mt-1 md:flex sm:block rounded-md shadow-sm">
+        <div class="relative flex flex-grow items-stretch focus-within:z-10">
+
+          <input type="searchField"
+                 name="searchField"
+                 id="searchField"
+                 [(ngModel)]="searchKey"
+                 (keyup.enter)="search()"
+                 class="block border w-full sm:rounded-none md:rounded-l-md border-gray-300 pl-4 pt-3 pb-3 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+                 placeholder="Search report by content">
+        </div>
+        <div class="flex">
+          <div>
+            <mat-form-field appearance="fill">
+              <mat-label>
+                Status
+              </mat-label>
+              <mat-select matNativeControl
+                          name="isSolved"
+                          id="isSolved"
+                          disableOptionCentering
+                          panelClass="report-content"
+                          [(ngModel)]="isSolved"
+                          (ngModelChange)="search()">
+                <mat-option value="All">All</mat-option>
+                <mat-option value="Solved">Solved</mat-option>
+                <mat-option value="Unsolved">Unsolved</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <!-- <mat-form-field appearance="fill">
+            <mat-label>Enter join date</mat-label>
+            <mat-date-range-input [formGroup]="range"
+                                  [rangePicker]="picker">
+              <input matStartDate
+                     formControlName="startDate"
+                     placeholder="From date">
+              <input matEndDate
+                     formControlName="endDate"
+                     placeholder="To date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix
+                                   [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field> -->
+
+          <button type="button"
+                  (click)="search()"
+                  class="relative-ml-px w-100 inline-flex items-center text-sm space-x-2 sm:rounded-none md:rounded-r-md border border-gray-300 bg-emerald-600 hover:bg-emerald-700 px-4 py-2 text-sm font-medium text-white focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+            <!-- Heroicon name: mini/bars-arrow-up -->
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke-width="1.5"
+                 stroke="currentColor"
+                 class="w-6 h-6">
+              <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+
+            <span class="font-bold">Search</span>
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+    <div class="table-container relative mt-4">
+      <mp-loading [position]="'middle'"
+                  *ngIf="$searchLoading"></mp-loading>
+      <mp-skeleton-loading-table *ngIf="$isLoading; else loaded"
+                                 [totalNumberOfRows]="skeletonRow"
+                                 [columns]="propertyColumnsConfig"></mp-skeleton-loading-table>
+      <ng-template #loaded>
+        <mp-table [columnsConfig]="propertyColumnsConfig"
+                  [data]="propertyContent"
+                  [editMode]="true"
+                  (sortChanged)="onSortChanged($event)"
+                  (clickedRow)="onClickedRow($event)"
+                  (removed)="openConfirmDialog($event)"></mp-table>
+      </ng-template>
+      <mp-paginator [pagination]="pagination"
+                    (pageChange)="onChangePagination($event)"></mp-paginator>
+    </div>
+  </div>
+</div>

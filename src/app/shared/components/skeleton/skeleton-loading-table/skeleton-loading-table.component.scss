@@ -1,0 +1,15 @@
+.table-skeleton {
+  ::ng-deep .mat-header-row {
+    // @apply h-12;
+  }
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+
+  .mat-row {
+    @apply h-12;
+  }
+
+  .mat-row:hover {
+    background: none;
+  }
+}

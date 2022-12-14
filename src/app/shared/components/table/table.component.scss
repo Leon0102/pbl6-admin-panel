@@ -1,0 +1,22 @@
+::ng-deep .table {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  .mat-checkbox-checked,
+  .mat-checkbox-indeterminate {
+    .mat-checkbox-background {
+      background-color: #e0f0fe !important;
+      border: 1px solid #6355FF;
+
+      .mat-checkbox-checkmark .mat-checkbox-checkmark-path {
+        stroke: #0d2c59 !important;
+      }
+
+      .mat-checkbox-mixedmark {
+        // @apply bg-accent-500;
+      }
+    }
+  }
+
+  .mat-icon:hover {
+    color: #6355FF;
+  }
+}

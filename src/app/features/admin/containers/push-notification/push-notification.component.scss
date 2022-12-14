@@ -1,0 +1,17 @@
+.ios-preview {
+  height: 400px;
+  overflow: auto;
+  position: relative;
+
+  .notification-container {
+    top: 40%;
+    width: 100%;
+
+    .notification {
+      width: 80%;
+      padding: 18px 12px;
+      border-radius: 12px;
+      background-color: rgba(222, 203, 203, 0.779);
+    }
+  }
+}

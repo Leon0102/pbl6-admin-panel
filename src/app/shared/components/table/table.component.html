@@ -1,0 +1,102 @@
+<div class="w-full table">
+  <table mat-table
+         [dataSource]="(!!data && data) || []"
+         matSort
+         matSortDisableClear
+         [matSortActive]="!!sort && sort.sortBy"
+         [matSortDirection]="(!!sort && sort.sortType) || 'asc'"
+         class="table-auto w-full"
+         (matSortChange)="sortData($event)">
+    <ng-container *ngFor="
+        let column of columnsConfig;
+        let last = last;
+        trackBy: trackByIndex
+      ">
+      <ng-container matColumnDef="select"
+                    *ngIf="isSelection && column.field === 'select'; else tableContent">
+        <th mat-header-cell
+            *matHeaderCellDef
+            [ngStyle]="{ width: column.width }">
+          <mat-checkbox color="primary"
+                        (change)="$event ? toggleAllRows() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+                        [disabled]="data.length === 0"
+                        class="ml-1">
+          </mat-checkbox>
+        </th>
+        <td mat-cell
+            *matCellDef="let row">
+          <mat-checkbox color="primary"
+                        (click)="$event.stopPropagation()"
+                        (change)="$event ? toggleRow(row) : null"
+                        [checked]="selection.isSelected(row)"
+                        class="ml-1">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-template #tableContent>
+        <ng-container matColumnDef="{{ column.field }}">
+          <th mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+              [disabled]="!column.sortable"
+              [ngStyle]="{ width: column.width }">
+            {{ column.label }}
+          </th>
+          <td mat-cell
+              *matCellDef="let row"
+              [ngClass]="{ capitalize: !column.uncapitalized }">
+            <ng-container *ngIf="column.field === 'rating'; else contentField">
+              <div class="flex items
+                -center justify-between">
+                <div class="flex items-center">
+                  <mat-icon class="text-[#FFC107]">star</mat-icon>
+                  <span class="ml-1">{{ row[column.field] }}</span>
+                </div>
+              </div>
+            </ng-container>
+            <ng-template #contentField>
+              <div class="flex items-center justify-between">
+                <span *ngIf="column.render; else noRender"
+                      [innerHTML]="column.render(row)">
+                </span>
+                <ng-template #noRender>
+                  {{ row[column.field] }}
+                </ng-template>
+                <div *ngIf="editMode && last">
+                  <mat-icon class="ml-2 w-max h-max text-sm cursor-pointer"
+                            (click)="onClickedRow(row)">
+                    edit
+                  </mat-icon>
+                  <mat-icon class="ml-2 w-max h-max text-sm cursor-pointer"
+                            (click)="onRemoved(row)">
+                    close
+                  </mat-icon>
+                </div>
+              </div>
+            </ng-template>
+          </td>
+        </ng-container>
+      </ng-template>
+    </ng-container>
+
+    <tr mat-header-row
+        *matHeaderRowDef="displayedColumns"
+        class="bg-gray"></tr>
+    <tr mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        [ngClass]="{ 'bg-[#E8F4FF]': isSelected(row?.id) }"></tr>
+
+    <tr class="mat-row"
+        *matNoDataRow>
+      <td class="mat-cell"
+          [colSpan]="displayedColumns.length">
+        <img class="mx-auto"
+             src="/assets/images/xp-no-data.jpg"
+             alt="" />
+      </td>
+    </tr>
+  </table>
+</div>

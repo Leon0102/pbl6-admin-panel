@@ -1,0 +1,40 @@
+<mp-breadcrumb [firstChild]="'Analytic'"></mp-breadcrumb>
+
+<div class="grid gap-4 xl:grid-cols-3 md:grid-cols-2">
+  <ng-container *ngFor="let item of cardMockData">
+    <mp-skeleton-block width="100%"
+                       height="200px"
+                       *ngIf="$isLoading">
+    </mp-skeleton-block>
+    <mp-stat-card *ngIf="!$isLoading"
+                  [iconUrl]="item.iconUrl"
+                  [title]="item.title"
+                  [stat]="item.stat"
+                  [percent]="item.percent"
+                  [isGrowth]="item.isGrowth"></mp-stat-card>
+
+  </ng-container>
+</div>
+<div class="row mt-8">
+  <mp-skeleton-block width="100%"
+                     height="531px"
+                     *ngIf="$isLoading">
+  </mp-skeleton-block>
+  <mp-visitor-overview *ngIf="!$isLoading"></mp-visitor-overview>
+</div>
+<div class="mt-8">
+  <mp-skeleton-block width="100%"
+                     height="534px"
+                     *ngIf="$isLoading">
+  </mp-skeleton-block>
+  <mp-category-stats></mp-category-stats>
+</div>
+
+
+<div class="row mt-8">
+  <mp-skeleton-block width="100%"
+                     height="541px"
+                     *ngIf="$isLoading">
+  </mp-skeleton-block>
+  <mp-billing-overview *ngIf="!$isLoading"></mp-billing-overview>
+</div>

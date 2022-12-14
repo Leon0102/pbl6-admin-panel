@@ -1,0 +1,21 @@
+.fish {
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 30px;
+  background-color: #FFDE8A;
+  border: 1px solid #FFAF32;
+  border-radius: 24px;
+
+  &.small {
+    background-color: #98C1D5;
+    border: 1px solid #3C677C;
+  }
+
+  &.big {
+    background-color: #FFDE8A;
+    border: 1px solid #FFAF32;
+  }
+}

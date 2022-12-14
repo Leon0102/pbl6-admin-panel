@@ -1,0 +1,46 @@
+.vertical-navigation {
+  width: 260px;
+  font-weight: 500;
+
+  .navigation-container {
+    .app-nav-accordion {
+      .mat-list-item {
+        height: 68px;
+        font-weight: 500;
+        font-size: 14px;
+      }
+
+      .icon-url {
+        opacity: 0.6;
+      }
+
+      .mat-expansion-panel-body {
+        padding: 0px !important;
+      }
+
+      .mat-expansion-panel {
+        border-radius: 0px !important;
+        box-shadow: none !important;
+
+        &.mat-expansion-panel-spacing {
+          margin: 0px;
+        }
+
+        .mat-expansion-panel-body {
+          padding: 0px !important;
+        }
+
+        .mat-expansion-panel-header {
+          height: 40px;
+          padding: 0px 24px 0px 16px;
+        }
+
+        .mat-expansion-panel-header-title {
+          color: rgba(0, 0, 0, 0.54);
+          font-size: 14px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
