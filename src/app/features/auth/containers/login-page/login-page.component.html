@@ -1,3 +1,7 @@
+<div *ngIf="$searchLoading"
+     class="bg-gradient-to-r from-emerald-500 to-transparent block w-full h-full fixed z-10">
+  <mp-loading [position]="'middle'"></mp-loading>
+</div>
 <div class="mx-auto h-full bg-emerald-400">
   <div class="flex content-center items-center justify-center h-full">
     <div class="w-full lg:w-4/12 p-4 rounded bg-white">

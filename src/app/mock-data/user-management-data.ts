@@ -81,4 +81,82 @@ export const ELEMENT_DATA: PeriodicElement[] = [
     createdAt: faker.date.between('2018-01-01T00:00:00.000Z', '2022-01-01T00:00:00.000Z'),
     country: faker.address.country()
   },
+  {
+    email: faker.internet.email(),
+    url: faker.internet.url(),
+    createdAt: faker.date.between('2018-01-01T00:00:00.000Z', '2022-01-01T00:00:00.000Z'),
+    country: faker.address.country()
+  },
+  {
+    email: faker.internet.email(),
+    url: faker.internet.url(),
+    createdAt: faker.date.between('2018-01-01T00:00:00.000Z', '2022-01-01T00:00:00.000Z'),
+    country: faker.address.country()
+  },
+  {
+    email: faker.internet.email(),
+    url: faker.internet.url(),
+    createdAt: faker.date.between('2018-01-01T00:00:00.000Z', '2022-01-01T00:00:00.000Z'),
+    country: faker.address.country()
+  },
+  {
+    email: faker.internet.email(),
+    url: faker.internet.url(),
+    createdAt: faker.date.between('2018-01-01T00:00:00.000Z', '2022-01-01T00:00:00.000Z'),
+    country: faker.address.country()
+  },
+  {
+    email: faker.internet.email(),
+    url: faker.internet.url(),
+    createdAt: faker.date.between('2018-01-01T00:00:00.000Z', '2022-01-01T00:00:00.000Z'),
+    country: faker.address.country()
+  },
+  {
+    email: faker.internet.email(),
+    url: faker.internet.url(),
+    createdAt: faker.date.between('2018-01-01T00:00:00.000Z', '2022-01-01T00:00:00.000Z'),
+    country: faker.address.country()
+  },
+  {
+    email: faker.internet.email(),
+    url: faker.internet.url(),
+    createdAt: faker.date.between('2018-01-01T00:00:00.000Z', '2022-01-01T00:00:00.000Z'),
+    country: faker.address.country()
+  },
+  {
+    email: faker.internet.email(),
+    url: faker.internet.url(),
+    createdAt: faker.date.between('2018-01-01T00:00:00.000Z', '2022-01-01T00:00:00.000Z'),
+    country: faker.address.country()
+  },
+  {
+    email: faker.internet.email(),
+    url: faker.internet.url(),
+    createdAt: faker.date.between('2018-01-01T00:00:00.000Z', '2022-01-01T00:00:00.000Z'),
+    country: faker.address.country()
+  },
+  {
+    email: faker.internet.email(),
+    url: faker.internet.url(),
+    createdAt: faker.date.between('2018-01-01T00:00:00.000Z', '2022-01-01T00:00:00.000Z'),
+    country: faker.address.country()
+  },
+  {
+    email: faker.internet.email(),
+    url: faker.internet.url(),
+    createdAt: faker.date.between('2018-01-01T00:00:00.000Z', '2022-01-01T00:00:00.000Z'),
+    country: faker.address.country()
+  },
+  {
+    email: faker.internet.email(),
+    url: faker.internet.url(),
+    createdAt: faker.date.between('2018-01-01T00:00:00.000Z', '2022-01-01T00:00:00.000Z'),
+    country: faker.address.country()
+  },
+  {
+    email: faker.internet.email(),
+    url: faker.internet.url(),
+    createdAt: faker.date.between('2018-01-01T00:00:00.000Z', '2022-01-01T00:00:00.000Z'),
+    country: faker.address.country()
+  },
 ];

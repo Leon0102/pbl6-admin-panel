@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services';
 
 @Component({
@@ -9,6 +10,7 @@ import { AuthService } from 'src/app/core/services';
 })
 export class LoginPageComponent implements OnInit {
 
+  $searchLoading = false;
   isValidEmail = true;
   isValidPassword = true;
   loginForm = new FormGroup({
@@ -21,6 +23,7 @@ export class LoginPageComponent implements OnInit {
   });
   constructor(
     private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -33,7 +36,9 @@ export class LoginPageComponent implements OnInit {
     if (!this.isValidEmail || !this.isValidPassword) {
       return;
     }
-    console.log(this.loginForm.value);
-    this.authService.login(this.loginForm.value.email!, this.loginForm.value.password!);
+    this.$searchLoading = true;
+    this.authService.login(this.loginForm.value.email!, this.loginForm.value.password!).subscribe(() => {
+      this.router.navigate(['/dashboard']);
+    });
   }
 }

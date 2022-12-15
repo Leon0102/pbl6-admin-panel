@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { LogoModule } from 'src/app/shared/components/logo/logo.module';
+import { LoadingModule } from '../../shared/components/loading/loading.module';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
@@ -19,6 +20,7 @@ import { LoginPageComponent } from './containers/login-page/login-page.component
     AuthRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    LoadingModule,
     LogoModule,
   ],
   declarations: [
