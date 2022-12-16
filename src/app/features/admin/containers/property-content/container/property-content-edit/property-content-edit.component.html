@@ -1,166 +1,188 @@
 <mp-model-layout>
-  <main class="bg-white px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-3xl">
-      <section aria-labelledby="order-heading"
-               class="mt-10 border-t border-gray-200">
-        <h2 id="order-heading"
-            class="">Adela Boutique Hotel</h2>
+  <mp-loading *ngIf="$isLoading; else loaded"
+              height="600px"></mp-loading>
+  <ng-template #loaded>
+    <main class="bg-white px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-3xl">
+        <section aria-labelledby="order-heading"
+                 class="mt-10">
+          <h2 id="order-heading"
+              class="">{{propertyData.name}}</h2>
 
-        <h3 class="">Khách sạn</h3>
+          <h3 class="">{{propertyData.categoryId}}</h3>
+          <mp-property-image-swiper [images]="propertyData.photos"></mp-property-image-swiper>
 
-        <div class="flex space-x-6 border-b border-gray-200 py-10">
-          <img src="https://nfdczpeylihcjyxeylbs.supabase.co/storage/v1/object/public/storage/storage/dz284pmrz9ng4a9e2839fs"
-               alt="Glass bottle with black plastic pour top and mesh insert."
-               class="h-20 w-20 flex-none rounded-lg bg-gray-100 object-cover object-center sm:h-40 sm:w-40">
-          <div class="flex flex-auto flex-col">
-            <div>
-              <h4 class="font-medium text-gray-900">
-                <a href="#">10 An Thượng 36, Phường Mỹ An, Quận Ngũ Hành Sơn, Đà Nẵng</a>
-              </h4>
-              <p class="mt-2 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime autem ut nisi labore enim libero magnam nemo laudantium odit exercitationem? Fugiat ex aperiam tenetur nesciunt totam veniam officiis sint labore?
-              </p>
-            </div>
-            <div class="mt-6 flex flex-1 items-end">
-              <dl class="flex space-x-4 divide-x divide-gray-200 text-sm sm:space-x-6">
-                <div class="flex">
-                  <dt class="font-medium text-gray-900">Rating</dt>
-                  <dd class="ml-2 text-gray-700 align-center">
-                    <p class="text-sm text-gray-700 align-center">
-                      3.9
-                      <span class="sr-only"> out of 5 stars</span>
-                    </p>
+          <div class="flex space-x-6">
 
-                  </dd>
-                  <div class="rating ml-1 flex">
-                    <!--
+            <div class="flex flex-auto flex-col">
+              <div>
+                <h4 class="font-medium text-gray-900">
+                  <a href="#">{{propertyData.streetAddress + ', ' + propertyData.ward.fullName +', ' + propertyData.ward.district.fullName +', ' + propertyData.ward.district.province.name}}</a>
+                </h4>
+                <p class="mt-2 text-sm text-gray-600">
+                  {{propertyData.description}}
+                </p>
+              </div>
+              <div class="mt-6 flex flex-1 items-end">
+                <dl class="flex space-x-4 text-sm sm:space-x-6">
+                  <div class="flex">
+                    <dt class="font-medium text-gray-900">Rating</dt>
+                    <dd class="ml-2 text-gray-700 align-center">
+                      <p class="text-sm text-gray-700 align-center">
+                        {{propertyData.rating !== null ? propertyData.rating / 2 : 0}}
+                        <span class="sr-only"> out of 5 stars</span>
+                      </p>
+
+                    </dd>
+                    <div *ngIf="propertyData.rating === null;else hasRating">
+                      <div class="rating ml-1 flex">
+                        <!--
+                    </div>
                                     Heroicon name: mini/star
 
-                                    Active: "text-yellow-400", Inactive: "text-gray-200"
+                                    Active: ", Inactive: "text-gray-200"
                                   -->
-                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
-                         xmlns="http://www.w3.org/2000/svg"
-                         viewBox="0 0 20 20"
-                         fill="currentColor"
-                         aria-hidden="true">
-                      <path fill-rule="evenodd"
-                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                            clip-rule="evenodd" />
-                    </svg>
+                        <svg class="text-gray-200 h-5 w-5 flex-shrink-0"
+                             xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 20 20"
+                             fill="currentColor"
+                             aria-hidden="true">
+                          <path fill-rule="evenodd"
+                                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                                clip-rule="evenodd" />
+                        </svg>
 
-                    <!-- Heroicon name: mini/star -->
-                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
-                         xmlns="http://www.w3.org/2000/svg"
-                         viewBox="0 0 20 20"
-                         fill="currentColor"
-                         aria-hidden="true">
-                      <path fill-rule="evenodd"
-                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                            clip-rule="evenodd" />
-                    </svg>
+                        <!-- Heroicon name: mini/star -->
+                        <svg class="text-gray-200 h-5 w-5 flex-shrink-0"
+                             xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 20 20"
+                             fill="currentColor"
+                             aria-hidden="true">
+                          <path fill-rule="evenodd"
+                                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                                clip-rule="evenodd" />
+                        </svg>
 
-                    <!-- Heroicon name: mini/star -->
-                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
-                         xmlns="http://www.w3.org/2000/svg"
-                         viewBox="0 0 20 20"
-                         fill="currentColor"
-                         aria-hidden="true">
-                      <path fill-rule="evenodd"
-                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                            clip-rule="evenodd" />
-                    </svg>
+                        <!-- Heroicon name: mini/star -->
+                        <svg class="text-gray-200 h-5 w-5 flex-shrink-0"
+                             xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 20 20"
+                             fill="currentColor"
+                             aria-hidden="true">
+                          <path fill-rule="evenodd"
+                                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                                clip-rule="evenodd" />
+                        </svg>
 
-                    <!-- Heroicon name: mini/star -->
-                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
-                         xmlns="http://www.w3.org/2000/svg"
-                         viewBox="0 0 20 20"
-                         fill="currentColor"
-                         aria-hidden="true">
-                      <path fill-rule="evenodd"
-                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                            clip-rule="evenodd" />
-                    </svg>
+                        <!-- Heroicon name: mini/star -->
+                        <svg class="text-gray-200 h-5 w-5 flex-shrink-0"
+                             xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 20 20"
+                             fill="currentColor"
+                             aria-hidden="true">
+                          <path fill-rule="evenodd"
+                                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                                clip-rule="evenodd" />
+                        </svg>
 
-                    <!-- Heroicon name: mini/star -->
-                    <svg class="text-gray-200 h-5 w-5 flex-shrink-0"
-                         xmlns="http://www.w3.org/2000/svg"
-                         viewBox="0 0 20 20"
-                         fill="currentColor"
-                         aria-hidden="true">
-                      <path fill-rule="evenodd"
-                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                            clip-rule="evenodd" />
-                    </svg>
+                        <!-- Heroicon name: mini/star -->
+                        <svg class="text-gray-200 h-5 w-5 flex-shrink-0"
+                             xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 20 20"
+                             fill="currentColor"
+                             aria-hidden="true">
+                          <path fill-rule="evenodd"
+                                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                                clip-rule="evenodd" />
+                        </svg>
+                      </div>
+                    </div>
+                    <ng-template #hasRating>
+                      <div *ngFor="let rating of [].constructor(rating); let i = index">
+                        <svg class="text-yellow-400 h-5 w-5 flex-shrink-0"
+                             xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 20 20"
+                             fill="currentColor"
+                             aria-hidden="true">
+                          <path fill-rule="evenodd"
+                                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                                clip-rule="evenodd" />
+                        </svg>
+                      </div>
+                    </ng-template>
+                    <div aria-hidden="true"
+                         class="ml-4 text-sm text-gray-300">·</div>
+                    <div class="ml-4 flex">
+                      <a href="#"
+                         class="text-sm font-medium text-emerald-600 hover:text-emerald-500">See all reviews</a>
+                    </div>
                   </div>
-                  <div aria-hidden="true"
-                       class="ml-4 text-sm text-gray-300">·</div>
-                  <div class="ml-4 flex">
-                    <a href="#"
-                       class="text-sm font-medium text-emerald-600 hover:text-emerald-500">See all 512 reviews</a>
-                  </div>
-                </div>
-              </dl>
+                </dl>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="sm:ml-40 sm:pl-6">
-          <dl class="grid grid-cols-2 gap-x-6 text-sm">
-            <div>
-              <dt class="font-medium text-gray-900">Deluxe Twin</dt>
-              <dd class="mt-2 text-gray-700">
-                <address class="not-italic">
-                  <span class="block">5x5 m</span>
-                  <span class="block">1 Giường Đôi Và 1 Giường Đơn</span>
-                  <span class="block">3 khách</span>
-                </address>
-              </dd>
+          <div class="mt-4 mb-4 relative">
+            <div class="absolute inset-0 flex items-center"
+                 aria-hidden="true">
+              <div class="w-full border-t border-gray-300"></div>
             </div>
-            <div>
-              <dt class="font-medium text-gray-900">Suite Twin</dt>
-              <dd class="mt-2 text-gray-700">
-                <img src="https://nfdczpeylihcjyxeylbs.supabase.co/storage/v1/object/public/storage/storage/4x57a3fga04gqhvp32m1w"
-                     alt="Glass bottle with black plastic pour top and mesh insert."
-                     class="h-20 w-20 flex-none rounded-lg bg-gray-100 object-cover object-center sm:h-40 sm:w-40">
-              </dd>
+            <div class="relative flex justify-center">
+              <span class="px-3 bg-white text-sm text-gray-500">
+                Room Type
+              </span>
             </div>
-          </dl>
-
-          <dl class="grid grid-cols-2 gap-x-6 text-sm">
-            <div>
-              <dt class="font-medium text-gray-900">Deluxe Twin</dt>
-              <dd class="mt-2 text-gray-700">
-                <address class="not-italic">
-                  <span class="block">5x5 m</span>
-                  <span class="block">1 Giường Đôi Và 1 Giường Đơn</span>
-                  <span class="block">3 khách</span>
-                </address>
-              </dd>
-            </div>
-            <div>
-              <dt class="font-medium text-gray-900">Suite Twin</dt>
-              <dd class="mt-2 text-gray-700">
-                <img src="https://nfdczpeylihcjyxeylbs.supabase.co/storage/v1/object/public/storage/storage/4x57a3fga04gqhvp32m1w"
-                     alt="Glass bottle with black plastic pour top and mesh insert."
-                     class="h-20 w-20 flex-none rounded-lg bg-gray-100 object-cover object-center sm:h-40 sm:w-40">
-              </dd>
-            </div>
-          </dl>
-        </div>
-      </section>
-      <div class="pt-5">
-        <div class="flex justify-end">
-          <div class="flex ">
-            <button type="button"
-                    mat-dialog-close="false"
-                    class="bg-white-500 border text-black active:bg-secondary text-sm font-bold px-6 py-2 rounded hover:bg-slate-50 outline-none focus:outline-none mr-2 mb-1 ease-linear transition-all duration-150">Cancel</button>
-            <button type="submit"
-                    mat-dialog-close="true"
-                    class="bg-emerald-600 text-white active:bg-secondary text-sm font-bold px-6 py-2 rounded hover:bg-emerald-700 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150">Verify</button>
           </div>
-        </div>
+          <ng-container *ngFor="let roomType of propertyData.roomTypes">
+            <dl class="grid grid-cols-2 gap-x-6 text-sm pb-4">
+              <div>
+                <dt class="font-medium text-gray-900">{{roomType.name}}</dt>
+                <dd class="mt-2 text-gray-700">
+                  <address class="not-italic">
+                    <span class="block">Size: {{roomType.size.width}} x {{roomType.size.length}}</span>
+                    <span class="block">Bed Type: {{roomType.bedType}}</span>
+                    <span class="block">Max Guests: {{roomType.maxGuests}}</span>
+                  </address>
 
+                  <div class="mt-4 mb-4 relative">
+                    <div class="relative">
+                      <span class="bg-white text-sm text-gray-500 font-bold">
+                        Price :{{roomType.price}} VND
+                      </span>
+                    </div>
+                  </div>
+                </dd>
+              </div>
+              <dd class="mt-2 text-gray-700 flex justify-end">
+                <img [src]="roomType.photos[0]"
+                     alt="Glass bottle with black plastic pour top and mesh insert."
+                     class="align-center h-20 w-20 flex-none rounded-lg bg-gray-100 object-cover object-center sm:h-40 sm:w-40">
+              </dd>
+            </dl>
+          </ng-container>
+        </section>
+        <div class="pt-5">
+          <div class="flex justify-end">
+            <div class="flex ">
+              <button type="button"
+                      mat-dialog-close="false"
+                      class="bg-white-500 border text-black active:bg-secondary text-sm font-bold px-6 py-2 rounded hover:bg-slate-50 outline-none focus:outline-none mr-2 mb-1 ease-linear transition-all duration-150">Cancel</button>
+
+              <ng-container *ngIf="!propertyData.isVerified; else notVerified">
+                <button type="button"
+                        (click)="updateVerifiedStatus()"
+                        class="bg-emerald-600 text-white active:bg-secondary text-sm font-bold px-6 py-2 rounded hover:bg-emerald-700 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150">Verify</button>
+              </ng-container>
+              <ng-template #notVerified>
+                <button type="button"
+                        (click)="updateVerifiedStatus()"
+                        class="bg-red-600 text-white active:bg-secondary text-sm font-bold px-6 py-2 rounded hover:bg-red-700 outline-none focus:outline-none mb-1 ease-linear transition-all duration-150">UnVerify</button>
+              </ng-template>
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
-  </main>
+    </main>
+  </ng-template>
 </mp-model-layout>

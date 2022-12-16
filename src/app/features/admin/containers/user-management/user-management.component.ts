@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { USER_COLUMNS_CONFIG } from 'src/app/core/constants/app-table-column-config.const';
 import { initialFilter, PaginationModel, TableFilterModel } from 'src/app/core/models';
-import { ELEMENT_DATA } from 'src/app/mock-data/user-management-data';
+import { UserManagementService } from '../../../../core/services';
 import { formatDateQuery } from '../../../../core/utils';
 import { removeEmptyValues } from '../../../../core/utils/helper';
 import { DialogComponent } from '../../../../shared/components/dialog/dialog.component';
@@ -16,24 +16,21 @@ import { UserManagementEditComponent } from './container/user-management-edit/us
 })
 export class UserManagementComponent implements OnInit {
   displayedColumns: string[] = ['position', 'email', 'joinDate', 'isSubscription', 'message', 'action'];
-  dataSource = ELEMENT_DATA;
 
   userColumnsConfig = USER_COLUMNS_CONFIG;
 
   searchFilter: TableFilterModel = {
     page: 1,
-    take: 10,
-    createdAt: 'DESC'
   };
   searchValue = '';
 
   searchKey = '';
 
-  $userList = ELEMENT_DATA;
+  $userList: any;
 
   initFilter: TableFilterModel = initialFilter;
 
-  skeletonRow = initialFilter.take;
+  skeletonRow = initialFilter.page * 10;
 
   $isLoading = true;
 
@@ -56,15 +53,33 @@ export class UserManagementComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
 
+    private userManagementService: UserManagementService,
+
   ) {
     setInterval(() => {
       this.$isLoading = false;
     }, 500);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUsers(initialFilter);
+  }
 
   getUsers(filter: TableFilterModel) {
+    this.$isLoading = true;
+    this.userManagementService.getUsers(this.searchFilter).subscribe(res => {
+      if (res) {
+        this.$userList = res.data.users;
+        this.pagination = {
+          take: res.data.currentPage * 10,
+          itemCount: res.data.totalCount,
+          pageCount: res.data.totalPage,
+          page: res.data.currentPage,
+        };
+        this.$isLoading = false;
+        this.$searchLoading = false;
+      }
+    });
   }
 
 
@@ -80,7 +95,13 @@ export class UserManagementComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
+      this.$searchLoading = true;
+      if (result) {
+        this.userManagementService.deleteUser(event.id).subscribe(res => {
+          this.getUsers(this.searchFilter);
+          this.$searchLoading = false;
+        });
+      }
     });
   }
 
@@ -89,13 +110,17 @@ export class UserManagementComponent implements OnInit {
   }
 
   onChangePagination(event: any) {
-    console.log(event);
+    this.getFilter();
+    this.searchFilter.page = event.page;
+    this.$searchLoading = true;
+    this.getUsers(this.searchFilter);
   }
 
   onClickedRow(event: any) {
+    console.log(event.id);
     const dialogRef = this.dialog.open(UserManagementEditComponent, {
       width: '996px',
-      data: event,
+      data: event.id,
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -115,7 +140,6 @@ export class UserManagementComponent implements OnInit {
   getFilter() {
     this.$searchLoading = true;
     this.searchFilter.searchKey = this.searchKey;
-
     if (this.range.value.startDate) {
       this.searchFilter.startDate = formatDateQuery(this.range.value.startDate);
     }

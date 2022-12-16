@@ -1,12 +1,40 @@
-.spotlight-btn {
-  width: 250px;
-}
+:host {
+  .dropDown-seasons-panel {
+    border-radius: 4px !important;
+    border: 1px solid gray !important;
+  }
 
-.remove-address-btn {
-  top: -3px;
-  right: -6px;
-}
+  .dropDown-seasons-panel:active {
+    border-radius: 4px !important;
+    border: 1px solid gray !important;
+  }
 
-.combo-box-role {
-  padding-left: 0.5rem !important;
+  .mat-select-panel {
+    position: absolute;
+    top: 32px;
+    left: 4px;
+    min-width: calc(100% + 22px) !important;
+    border-radius: 4px !important;
+    border: 0px solid gray !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+    border-top-style: none;
+  }
+
+  .mat-select-panel ng-animating {
+    visibility: hidden;
+  }
+
+  .mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: transparent !important;
+    border-color: transparent !important;
+  }
+
+  .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: transparent !important;
+  }
+
+  .mat-form-field-flex {
+    border-radius: 4px !important;
+    width: 100% !important;
+  }
 }

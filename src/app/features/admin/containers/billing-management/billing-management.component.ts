@@ -13,7 +13,6 @@ export class BillingManagementComponent implements OnInit {
 
   searchFilter: TableFilterModel = {
     page: 1,
-    take: 10,
     createdAt: 'DESC'
   };
   searchValue = '';

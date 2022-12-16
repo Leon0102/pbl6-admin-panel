@@ -36,8 +36,8 @@ export class LoginPageComponent implements OnInit {
     if (!this.isValidEmail || !this.isValidPassword) {
       return;
     }
-    this.$searchLoading = true;
-    this.authService.login(this.loginForm.value.email!, this.loginForm.value.password!).subscribe(() => {
+    this.authService.login(this.loginForm.value.email!, this.loginForm.value.password!).subscribe((result) => {
+      this.$searchLoading = true;
       this.router.navigate(['/dashboard']);
     });
   }

@@ -8,17 +8,12 @@ export const messageConfig = [
     messageText: 'Email already existed!'
   },
   {
-    messageCode: 'AUTH_INCORRECT_PASSWORD',
-    messageText: `You've input wrong password!`
+    message: 'Email hoặc mật khẩu không chính xác',
   },
   {
     messageCode: 'AUTH_EMAIL_NOT_FOUND',
     messageText: 'Email not existed!'
-  },
-  {
-    messageCode: 'BRAND_SPOTLIGHT_MAXED',
-    messageText: 'You can only add up to 10 brand spotlight!'
-  },
+  }
 ];
 
 

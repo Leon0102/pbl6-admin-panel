@@ -1,5 +1,5 @@
 import { messageConfig } from '../constants/message.const';
 
-export function convertMessage(messageCode: string): string {
-  return messageConfig.find(el => el.messageCode === messageCode)?.messageText ?? 'Error';
+export function convertMessage(message: string): string {
+  return messageConfig.find(el => el.message === message)?.message ?? 'Error';
 }

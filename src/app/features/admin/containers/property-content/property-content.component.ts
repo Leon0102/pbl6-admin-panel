@@ -3,8 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PROPERTY_COLUMNS_CONFIG } from '../../../../core/constants/app-table-column-config.const';
 import { initialFilter, PaginationModel, TableFilterModel } from '../../../../core/models';
+import { PropertyManagementService } from '../../../../core/services';
 import { removeEmptyValues } from '../../../../core/utils/helper';
-import { PROPERTY_CONTENT } from '../../../../mock-data/property-data';
 import { DialogComponent } from '../../../../shared/components/dialog/dialog.component';
 import { PropertyContentEditComponent } from './container/property-content-edit/property-content-edit.component';
 
@@ -18,7 +18,7 @@ export class PropertyContentComponent implements OnInit {
 
   propertyColumnsConfig = PROPERTY_COLUMNS_CONFIG;
 
-  propertyContent = PROPERTY_CONTENT;
+  $propertyContent: any;
 
   searchKey = '';
   range = new FormGroup({
@@ -31,11 +31,10 @@ export class PropertyContentComponent implements OnInit {
   $searchLoading = false;
 
   initFilter: TableFilterModel = initialFilter;
-  skeletonRow = initialFilter.take;
+  skeletonRow = initialFilter.page * 10;
 
   searchFilter: TableFilterModel = {
     page: 1,
-    take: 10,
     createdAt: 'DESC',
   };
 
@@ -50,6 +49,9 @@ export class PropertyContentComponent implements OnInit {
   };
   constructor(
     public dialog: MatDialog,
+    private propertyManagementService: PropertyManagementService,
+
+
   ) {}
 
   ngOnInit(): void {
@@ -57,7 +59,21 @@ export class PropertyContentComponent implements OnInit {
   }
 
   getProperties(filter: TableFilterModel) {
+    this.$searchLoading = true;
+    this.propertyManagementService.getProperties(this.searchFilter).subscribe(res => {
+      if (res) {
+        this.$propertyContent = res.data.properties;
+        this.pagination = {
+          take: res.data.currentPage * 10,
+          itemCount: res.data.totalCount,
+          pageCount: res.data.totalPage,
+          page: res.data.currentPage,
+        };
+        this.$isLoading = false;
+        this.$searchLoading = false;
 
+      }
+    });
   }
 
 
@@ -82,15 +98,6 @@ export class PropertyContentComponent implements OnInit {
   getFilter() {
     this.$searchLoading = true;
     this.searchFilter.searchKey = this.searchKey;
-    if (this.isSolved === 'Solved') {
-      this.searchFilter.isSolved = true;
-    }
-    if (this.isSolved === 'Unsolved') {
-      this.searchFilter.isSolved = false;
-    }
-    if (this.isSolved === 'All') {
-      this.searchFilter.isSolved = undefined;
-    }
     removeEmptyValues(this.searchFilter);
   }
 
@@ -99,10 +106,17 @@ export class PropertyContentComponent implements OnInit {
     const dialogRef = this.dialog.open(PropertyContentEditComponent, {
       width: '900px',
       height: '80%',
-      data: 'Do you want to solve this Property?',
+      data: event.id,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        this.propertyManagementService.verifyProperty(event.id).subscribe(res => {
+          if (res) {
+            this.getProperties(this.searchFilter);
+          }
+        });
+      }
     });
   }
 
@@ -113,8 +127,13 @@ export class PropertyContentComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
+      if (result) {
+        this.propertyManagementService.deleteProperty(event.id).subscribe(res => {
+          if (res) {
+            this.getProperties(this.searchFilter);
+          }
+        });
+      }
     });
-
   }
 }

@@ -11,7 +11,6 @@ export interface TableFilterModel {
 
   page: number;
 
-  take: number;
 }
 export interface TableSortModel {
   sortType: SortDirection;
@@ -20,7 +19,6 @@ export interface TableSortModel {
 
 export const initialFilter: TableFilterModel = {
   page: 1,
-  take: 10,
   createdAt: 'DESC',
 };
 

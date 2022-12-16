@@ -80,10 +80,11 @@ export class ApiService {
     requestUrl?: string,
     hideErrorMessage?: boolean
   ) {
-    let errMessage = convertMessage(response.messageCode);
+    let errMessage = convertMessage(response.message);
+    console.log('errMessage', errMessage);
     //
     if (response.statusCode === 403) {
-      return throwError(response.messageCode);
+      return throwError(response.message);
     }
     //
     if (response.statusCode === 500) {

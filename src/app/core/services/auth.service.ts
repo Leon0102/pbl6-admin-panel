@@ -38,7 +38,7 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-  login(email: string, password: string) {
+  login(email: string, password: string): Observable<any> {
     return this.apiServices.post<any>('auth/login', { email, password }, true).pipe(map((auth) => {
       if (auth.data) {
         localStorage.setItem('currentUser', JSON.stringify(auth.data));

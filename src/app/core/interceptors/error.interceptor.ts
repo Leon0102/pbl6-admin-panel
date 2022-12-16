@@ -26,12 +26,12 @@ export class ErrorInterceptor implements HttpInterceptor {
           !window.location.href.includes('auth/login')
         ) {
           // auto logout if 401 response returned from api
-          this.authService.refreshToken().pipe().subscribe({
-            next: () => {
-              window.location.reload();
-            }
-          });
-
+          // this.authService.refreshToken().pipe().subscribe({
+          //   next: () => {
+          //     window.location.reload();
+          //   }
+          // });
+          this.authService.logout();
         }
 
         return throwError(err);

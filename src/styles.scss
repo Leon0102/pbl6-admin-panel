@@ -54,3 +54,27 @@ $prefix: "mo-";
 
 // Then import Bootstrap
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+
+.success-snackbar {
+  background: #28a745;
+  color: white;
+}
+
+.error-snackbar {
+  background: #dc3545;
+  color: white
+}
+
+.property-content {
+  position: absolute !important;
+  top: 28px !important;
+  left: 4px !important;
+}
+
+.user-management {
+  min-width: 276px !important;
+  position: absolute !important;
+  top: 28px !important;
+  left: 8px !important;
+}

@@ -1,6 +1,6 @@
 export interface HttpErrorResponse {
   error: string;
-  messageCode: string;
+  message: string;
   statusCode: number;
   timestamp: Date;
 }

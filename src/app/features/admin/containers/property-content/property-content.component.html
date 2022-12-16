@@ -24,12 +24,12 @@
                           name="isSolved"
                           id="isSolved"
                           disableOptionCentering
-                          panelClass="report-content"
+                          panelClass="property-content"
                           [(ngModel)]="isSolved"
                           (ngModelChange)="search()">
                 <mat-option value="All">All</mat-option>
-                <mat-option value="Solved">Solved</mat-option>
-                <mat-option value="Unsolved">Unsolved</mat-option>
+                <mat-option value="Verified">Verified</mat-option>
+                <mat-option value="UnVerified">UnVerified</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -79,7 +79,7 @@
                                  [columns]="propertyColumnsConfig"></mp-skeleton-loading-table>
       <ng-template #loaded>
         <mp-table [columnsConfig]="propertyColumnsConfig"
-                  [data]="propertyContent"
+                  [data]="$propertyContent"
                   [editMode]="true"
                   (sortChanged)="onSortChanged($event)"
                   (clickedRow)="onClickedRow($event)"

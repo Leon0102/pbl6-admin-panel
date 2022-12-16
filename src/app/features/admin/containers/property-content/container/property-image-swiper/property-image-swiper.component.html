@@ -1,0 +1,32 @@
+<swiper [slidesPerView]="1"
+        [spaceBetween]="10"
+        [navigation]="true"
+        [allowTouchMove]="false"
+        [breakpoints]="{
+          '768': {
+            slidesPerView: 1,
+            spaceBetween: 40
+          },
+          '1024': {
+            slidesPerView: 1,
+            spaceBetween: 50
+          },
+          '1536': {
+            slidesPerView: 1,
+            spaceBetween: 50
+          }
+        }"
+        class="mySwiper">
+  <ng-template class=""
+               *ngFor="let item of images"
+               swiperSlide>
+    <div class="spotlight-info w-100 text-left mt-2 p-4">
+      <div class="flex items-center bg-teal-50">
+        <img [src]="item"
+             class="image-slider"
+             alt="..">
+      </div>
+    </div>
+  </ng-template>
+
+</swiper>

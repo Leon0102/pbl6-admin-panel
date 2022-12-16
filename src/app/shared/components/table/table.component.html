@@ -10,6 +10,7 @@
     <ng-container *ngFor="
         let column of columnsConfig;
         let last = last;
+        let first = first;
         trackBy: trackByIndex
       ">
       <ng-container matColumnDef="select"
@@ -47,18 +48,34 @@
           </th>
           <td mat-cell
               *matCellDef="let row"
-              [ngClass]="{ capitalize: !column.uncapitalized }">
+              [ngClass]="{ capitalize: !column.uncapitalized}">
             <ng-container *ngIf="column.field === 'rating'; else contentField">
               <div class="flex items
-                -center justify-between">
-                <div class="flex items-center">
+                -center justify-start">
+                <div class="flex items-start">
                   <mat-icon class="text-[#FFC107]">star</mat-icon>
-                  <span class="ml-1">{{ row[column.field] }}</span>
+                  <span class="ml-1">{{ row[column.field] ? row[column.field]/2 : 0 }}</span>
                 </div>
               </div>
             </ng-container>
+            <ng-container *ngIf="column.field === 'isVerified'">
+              <div *ngIf="row[column.field]; else notVerified"
+                   class="flex items
+                -center justify-start">
+                <img src="https://img.icons8.com/fluency/20/null/checked.png"
+                     class="pb-3" />
+              </div>
+              <ng-template #notVerified
+                           class="flex items
+                -center justify-center">
+                <img src="https://img.icons8.com/fluency/20/null/cancel.png"
+                     class="pb-3" />
+              </ng-template>
+            </ng-container>
             <ng-template #contentField>
-              <div class="flex items-center justify-between">
+              <div class="flex items-center justify-between"
+                   [ngClass]="{'p-2': !first, 'pt-2 pb-2' : first, 'justify-between': !column.alignCenter, 'justify-center': column.alignCenter}"
+                   *ngIf="column.label !== 'isVerified'">
                 <span *ngIf="column.render; else noRender"
                       [innerHTML]="column.render(row)">
                 </span>
@@ -93,9 +110,12 @@
         *matNoDataRow>
       <td class="mat-cell"
           [colSpan]="displayedColumns.length">
-        <img class="mx-auto"
-             src="/assets/images/xp-no-data.jpg"
-             alt="" />
+        <div class="w-100 flex justify-center items-center p-32">
+          <div>
+            <i class="fa-solid fa-triangle-exclamation text-emerald-600 hover:text-emerald-700 text-[200px]"></i>
+            <h6 class="text-center mt-8 text-muted">No Data Available</h6>
+          </div>
+        </div>
       </td>
     </tr>
   </table>
