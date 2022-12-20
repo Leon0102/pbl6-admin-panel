@@ -85,6 +85,22 @@ export class UserManagementComponent implements OnInit {
 
   onSortChanged(event: any) {
     console.log(event);
+    this.searchFilter.order = event.sortType.toUpperCase();
+    this.searchFilter.sortBy = event.sortBy;
+    this.getFilter();
+    this.userManagementService.getUsers(this.searchFilter).subscribe(res => {
+      if (res) {
+        this.$userList = res.data.users;
+        this.pagination = {
+          take: res.data.currentPage * 10,
+          itemCount: res.data.totalCount,
+          pageCount: res.data.totalPage,
+          page: res.data.currentPage,
+        };
+        this.$isLoading = false;
+        this.$searchLoading = false;
+      }
+    });
   }
 
 
@@ -103,10 +119,6 @@ export class UserManagementComponent implements OnInit {
         });
       }
     });
-  }
-
-  onClickUrl(event: any) {
-    console.log(event);
   }
 
   onChangePagination(event: any) {

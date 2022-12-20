@@ -1,37 +1,25 @@
 <div class="card p-4 shadow">
   <h5>Categories Overview</h5>
   <div class="">
-    <div class="info">
-      <span class="text-sm text-muted">{{categoryStatusCard.total}} Categories created</span>
-      <div class="mt-2"
-           [ngClass]="{'text-green-500' : isGrowth, 'text-red-500' : !isGrowth}">
-        <i class="fa-solid fa-arrow-up"
-           *ngIf="isGrowth"></i>
-        <i class="fa-solid fa-arrow-down"
-           *ngIf="!isGrowth"></i>
-        {{categoryStatusCard.percentage}}%<span class="text-muted ml-1"> since last month</span>
-      </div>
-    </div>
-
-    <div class="detail mt-8 grid gap-3 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
-      <div *ngFor="let item of category"
+    <div class="detail mt-4 grid gap-3 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+      <div *ngFor="let item of categoryStatusCard;let i = index"
            class="border p-2">
         <div class="d-flex">
-          <img src="{{item.img}}"
+          <img src="{{category[i].img}}"
                width="40px"
                height="40px"
                class="">
           <div class="ml-4 mt-3">
-            <h5 class="">{{item.name}}</h5>
+            <h5 class="">{{item.category}}</h5>
           </div>
         </div>
         <div class="detail-info w-100 mt-4">
           <div class="rating mx:auto w-100 bottom-8">
             <div class="d-flex">
               <div class="ml-4">
-                <h5 class="text-sm text-lime-500"><i class="fa-solid fa-arrow-up"></i><span class="text-muted ml-1"> 20%</span>
+                <h5 class="text-sm text-lime-500"><i class="fa-solid fa-arrow-up"></i><span class="text-muted ml-1"> {{item.percent}}%</span>
                 </h5>
-                <h5 class="text-primary text-sm">2000 property created</h5>
+                <h5 class="text-primary text-sm">{{item.count}} created</h5>
               </div>
             </div>
           </div>

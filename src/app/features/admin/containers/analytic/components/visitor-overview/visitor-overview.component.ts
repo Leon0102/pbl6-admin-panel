@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { faker } from '@faker-js/faker';
+import { Component, Input, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
 
 @Component({
@@ -8,11 +7,11 @@ import { Chart } from 'chart.js';
   styleUrls: ['./visitor-overview.component.scss']
 })
 export class VisitorOverviewComponent implements OnInit {
+
+  @Input() data: any;
   public canvas: any;
   public ctx: any;
   public chart: any;
-
-
 
   ngOnInit() {
     this.canvas = document.getElementById("chartHours");
@@ -22,26 +21,14 @@ export class VisitorOverviewComponent implements OnInit {
       type: 'line',
 
       data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: this.data.months,
         datasets: [{
           borderColor: "#6bd098",
           backgroundColor: "#6bd098",
           pointRadius: 0,
           pointHoverRadius: 0,
           borderWidth: 3,
-          data: [
-            faker.datatype.number({ max: 1000 }),
-            faker.datatype.number({ max: 1000 }),
-            faker.datatype.number({ max: 1000 }),
-            faker.datatype.number({ max: 1000 }),
-            faker.datatype.number({ max: 1000 }),
-            faker.datatype.number({ max: 1000 }),
-            faker.datatype.number({ max: 1000 }),
-            faker.datatype.number({ max: 1000 }),
-            faker.datatype.number({ max: 1000 }),
-            faker.datatype.number({ max: 1000 }),
-            faker.datatype.number({ max: 1000 }),
-            faker.datatype.number({ max: 1000 })]
+          data: this.data.usersEachMonth.map((item: any) => item.count)
         }
         ]
       },

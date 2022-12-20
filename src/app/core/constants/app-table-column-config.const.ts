@@ -5,7 +5,6 @@ export const USER_COLUMNS_CONFIG: Array<ColumnConfig> = [
   {
     field: 'email',
     label: 'User Email',
-    sortable: true,
     width: '15%',
     uncapitalized: true,
     sortedValue: (data) => data.name || '',
@@ -13,7 +12,6 @@ export const USER_COLUMNS_CONFIG: Array<ColumnConfig> = [
   {
     field: 'roleId',
     label: 'Role',
-    sortable: true,
     width: '15%',
     uncapitalized: true,
     sortedValue: (data) => data.name || '',
@@ -21,18 +19,13 @@ export const USER_COLUMNS_CONFIG: Array<ColumnConfig> = [
   {
     field: 'phone',
     label: 'Phone',
-    sortable: true,
     width: '15%',
-    sortedValue: (data) => data.assignedBy || '',
   },
   {
     field: 'createdAt',
     label: 'Join Date',
-    sortable: true,
     width: '15%',
     render: (data) => (data.createdAt ? formatDate(data.createdAt) : '-'),
-    sortedValue: (data) =>
-      data.createdAt ? new Date(data.createdAt) : new Date('1/1/1977'),
   },
 ];
 
@@ -40,7 +33,6 @@ export const PROPERTY_COLUMNS_CONFIG: Array<ColumnConfig> = [
   {
     field: 'name',
     label: 'Property Name',
-    sortable: true,
     width: '15%',
     uncapitalized: true,
     sortedValue: (data) => data.name || '',
@@ -48,7 +40,6 @@ export const PROPERTY_COLUMNS_CONFIG: Array<ColumnConfig> = [
   {
     field: 'rating',
     label: 'Rating',
-    sortable: true,
     width: '5%',
     alignCenter: true,
     uncapitalized: true,
@@ -57,13 +48,11 @@ export const PROPERTY_COLUMNS_CONFIG: Array<ColumnConfig> = [
   {
     field: 'categoryId',
     label: 'Category',
-    sortable: true,
     width: '15%',
   },
   {
     field: 'isVerified',
     label: 'Verified',
-    sortable: true,
     render: (data) => (''),
     alignCenter: true,
     width: '10%',
@@ -71,7 +60,6 @@ export const PROPERTY_COLUMNS_CONFIG: Array<ColumnConfig> = [
   {
     field: 'createdAt',
     label: 'Join Date',
-    sortable: true,
     width: '15%',
     render: (data) => (data.createdAt ? formatDate(data.createdAt) : '-'),
     sortedValue: (data) =>

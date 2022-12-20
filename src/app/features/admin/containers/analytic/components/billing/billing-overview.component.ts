@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { faker } from '@faker-js/faker';
+import { Component, Input, OnInit } from '@angular/core';
 import * as Chart from 'chart.js';
 
 @Component({
@@ -9,6 +8,8 @@ import * as Chart from 'chart.js';
 })
 export class BillingOverviewComponent implements OnInit {
 
+
+  @Input() data: any;
   public canvas: any;
   public ctx: any;
   public chart: any;
@@ -19,61 +20,16 @@ export class BillingOverviewComponent implements OnInit {
     new Chart(ctx, {
       type: "bar",
       data: {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December"
-        ],
+        labels: this.data.map((item: any) => item.month),
         datasets: [
           {
             label: new Date().getFullYear().toString(),
             backgroundColor: "#ed64a6",
             borderColor: "#ed64a6",
-            data: [
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 })],
+            data: this.data.map((item: any) => item.amount),
             fill: false,
             barThickness: 12,
-          },
-          {
-            label: (new Date().getFullYear() - 1).toString(),
-            fill: false,
-            backgroundColor: "#4c51bf",
-            borderColor: "#4c51bf",
-            data: [
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 }),
-              faker.datatype.number({ max: 1000 })],
-            barThickness: 12,
-          },
+          }
         ],
       },
       options: {

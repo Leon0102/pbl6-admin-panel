@@ -37,8 +37,12 @@ export class PushNotificationComponent implements OnInit {
         body: this.pushNotificationForm.get('body')?.value,
       };
       this.helperService.pushNotification(req).subscribe(el => {
-        if (el.statusCode === 200) {
+        if (el.statusCode === 201) {
           this.notificationService.success('Push Notification Successfully!');
+          this.pushNotificationForm.reset();
+        }
+        else {
+          this.notificationService.error('Push Notification Failed!');
         }
       });
     }

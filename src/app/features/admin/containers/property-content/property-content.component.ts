@@ -26,7 +26,7 @@ export class PropertyContentComponent implements OnInit {
     endDate: new FormControl<Date | null>(null),
   });
 
-  isSolved = 'All';
+  isVerified = 'All';
   $isLoading = false;
   $searchLoading = false;
 
@@ -84,7 +84,6 @@ export class PropertyContentComponent implements OnInit {
   }
 
   onSortChanged(event: any) {
-
     this.searchFilter.createdAt = event.sortType.toUpperCase();
     this.search();
   }
@@ -98,6 +97,11 @@ export class PropertyContentComponent implements OnInit {
   getFilter() {
     this.$searchLoading = true;
     this.searchFilter.searchKey = this.searchKey;
+    if (this.isVerified === 'All') {
+      this.searchFilter.isVerified = '';
+    } else {
+      this.searchFilter.isVerified = this.isVerified === 'Verified' ? 'true' : 'false';
+    }
     removeEmptyValues(this.searchFilter);
   }
 

@@ -12,11 +12,7 @@ export class CategoryStatsComponent {
   @Input() isGrowth = false;
   @Input() categoryDescriptions: any[] = [];
 
-  @Input() categoryStatusCard: any = {
-    total: 0,
-    percentage: 0
-  };
-
+  @Input() categoryStatusCard: any;
   printCategoryType(type: any) {
     return type.replace(/_/g, ' ');
   }

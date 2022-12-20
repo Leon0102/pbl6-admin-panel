@@ -1,33 +1,54 @@
 <mp-breadcrumb [firstChild]="'Analytic'"></mp-breadcrumb>
 
 <div class="grid gap-4 xl:grid-cols-3 md:grid-cols-2">
-  <ng-container *ngFor="let item of cardMockData">
-    <mp-skeleton-block width="100%"
-                       height="200px"
-                       *ngIf="$isLoading">
-    </mp-skeleton-block>
-    <mp-stat-card *ngIf="!$isLoading"
-                  [iconUrl]="item.iconUrl"
-                  [title]="item.title"
-                  [stat]="item.stat"
-                  [percent]="item.percent"
-                  [isGrowth]="item.isGrowth"></mp-stat-card>
-
-  </ng-container>
+  <mp-skeleton-block width="100%"
+                     height="200px"
+                     *ngIf="$isLoading">
+  </mp-skeleton-block>
+  <mp-stat-card *ngIf="!$isLoading"
+                iconUrl="https://img.icons8.com/color/96/null/banknotes.png"
+                title="Revenue"
+                stat="{{cardData.totalAmountReservations | currency: 'VND': 'symbol-narrow'}}"
+                percent="{{cardData.percentAmountReservations}}"
+                [isGrowth]="cardData.percentAmountReservations > 0 ? true : false">
+  </mp-stat-card>
+  <mp-skeleton-block width="100%"
+                     height="200px"
+                     *ngIf="$isLoading">
+  </mp-skeleton-block>
+  <mp-stat-card *ngIf="!$isLoading"
+                iconUrl="https://img.icons8.com/color/96/null/circled-user-male-skin-type-7--v1.png"
+                title="User"
+                stat="{{cardData.totalUsers}}"
+                percent="{{cardData.percentUsers}}"
+                [isGrowth]="cardData.percentUsers > 0 ? true : false">
+  </mp-stat-card>
+  <mp-skeleton-block width="100%"
+                     height="200px"
+                     *ngIf="$isLoading">
+  </mp-skeleton-block>
+  <mp-stat-card *ngIf="!$isLoading"
+                iconUrl="https://img.icons8.com/color/96/null/real-estate.png"
+                title="Property"
+                stat="{{cardData.totalProperties}}"
+                percent="{{cardData.percentProperties}}"
+                [isGrowth]="cardData.percentProperties > 0 ? true : false">
+  </mp-stat-card>
 </div>
 <div class="row mt-8">
   <mp-skeleton-block width="100%"
                      height="531px"
                      *ngIf="$isLoading">
   </mp-skeleton-block>
-  <mp-visitor-overview *ngIf="!$isLoading"></mp-visitor-overview>
+  <mp-visitor-overview *ngIf="!$isLoading"
+                       [data]="visitorOverviewData"></mp-visitor-overview>
 </div>
 <div class="mt-8">
   <mp-skeleton-block width="100%"
                      height="534px"
                      *ngIf="$isLoading">
   </mp-skeleton-block>
-  <mp-category-stats></mp-category-stats>
+  <mp-category-stats [categoryStatusCard]="categoryStatusCard"></mp-category-stats>
 </div>
 
 
@@ -36,5 +57,6 @@
                      height="541px"
                      *ngIf="$isLoading">
   </mp-skeleton-block>
-  <mp-billing-overview *ngIf="!$isLoading"></mp-billing-overview>
+  <mp-billing-overview *ngIf="!$isLoading"
+                       [data]="amountReservationsOverviewData"></mp-billing-overview>
 </div>

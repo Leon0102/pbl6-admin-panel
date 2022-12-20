@@ -5,6 +5,13 @@ export interface TableFilterModel {
 
   isSolved?: boolean;
   startDate?: string;
+
+  order?: string;
+
+  sortBy?: string;
+
+  isVerified?: string;
+
   endDate?: string;
 
   createdAt?: string;
