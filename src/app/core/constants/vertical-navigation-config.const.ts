@@ -20,10 +20,5 @@ export const SITE_ADMIN_NAVIGATION = [
     name: 'Property Content',
     routeLink: [appConfig.routes.propertyContent.index],
     iconURL: 'https://img.icons8.com/ios-glyphs/90/null/report-card.png',
-  },
-  {
-    name: 'Billing Management',
-    routeLink: [appConfig.routes.billingManagement.index],
-    iconURL: 'https://img.icons8.com/ios-glyphs/90/null/credit-card.png',
-  },
+  }
 ];
