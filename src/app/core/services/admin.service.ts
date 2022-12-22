@@ -9,7 +9,7 @@ import { ApiService } from '.';
 @Injectable({
   providedIn: 'root'
 })
-export class AnalyticsService {
+export class AdminService {
 
   constructor(
     private apiServices: ApiService,
@@ -19,6 +19,10 @@ export class AnalyticsService {
 
   getAnalytics() {
     return this.apiServices.get('admin/analytics');
+  }
+
+  getNotifications(options: any) {
+    return this.apiServices.getWithOptions<any>('admin/notifications', options);
   }
 
 }

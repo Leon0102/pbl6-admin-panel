@@ -1,17 +1,37 @@
 .ios-preview {
-  height: 400px;
+  height: 228px;
   overflow: auto;
   position: relative;
 
   .notification-container {
-    top: 40%;
+    top: 30%;
     width: 100%;
 
     .notification {
       width: 80%;
-      padding: 18px 12px;
+      padding: 18px 8px;
       border-radius: 12px;
       background-color: rgba(222, 203, 203, 0.779);
     }
   }
+}
+
+textarea {
+  resize: none;
+}
+
+.button-title-clear {
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  top: 15px;
+  right: 0;
+}
+
+.button-body-clear {
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  top: 36px;
+  right: 0;
 }

@@ -26,6 +26,8 @@ export const USER_COLUMNS_CONFIG: Array<ColumnConfig> = [
     label: 'Join Date',
     width: '15%',
     render: (data) => (data.createdAt ? formatDate(data.createdAt) : '-'),
+    sortedValue: (data) =>
+      data.createdAt ? new Date(data.createdAt) : new Date('1/1/1977'),
   },
 ];
 
@@ -61,6 +63,34 @@ export const PROPERTY_COLUMNS_CONFIG: Array<ColumnConfig> = [
     field: 'createdAt',
     label: 'Join Date',
     width: '15%',
+    render: (data) => (data.createdAt ? formatDate(data.createdAt) : '-'),
+    sortedValue: (data) =>
+      data.createdAt ? new Date(data.createdAt) : new Date('1/1/1977'),
+  },
+];
+
+export const NOTIFICATIONS_COLUMN_CONFIG: Array<ColumnConfig> = [
+  {
+    field: 'title',
+    label: 'Title',
+    sortable: true,
+    uncapitalized: true,
+    width: '30%',
+    sortedValue: (data) => data.name || '',
+  },
+  {
+    field: 'body',
+    label: 'Body',
+    sortable: true,
+    uncapitalized: true,
+    width: '30%',
+    sortedValue: (data) => data.name || '',
+  },
+  {
+    field: 'createdAt',
+    label: 'Due Date',
+    sortable: true,
+    width: '17%',
     render: (data) => (data.createdAt ? formatDate(data.createdAt) : '-'),
     sortedValue: (data) =>
       data.createdAt ? new Date(data.createdAt) : new Date('1/1/1977'),

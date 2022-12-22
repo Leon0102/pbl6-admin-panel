@@ -84,6 +84,8 @@ export class PropertyContentComponent implements OnInit {
   }
 
   onSortChanged(event: any) {
+    this.searchFilter.order = event.sortType.toUpperCase();
+    this.getFilter();
     this.searchFilter.createdAt = event.sortType.toUpperCase();
     this.search();
   }
@@ -114,7 +116,8 @@ export class PropertyContentComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((data) => {
-      if (data) {
+      console.log(data);
+      if (data !== 'false') {
         this.propertyManagementService.verifyProperty(event.id).subscribe(res => {
           if (res) {
             this.getProperties(this.searchFilter);

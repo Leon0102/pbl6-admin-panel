@@ -3,30 +3,44 @@
 <div class="">
   <div class="rounded shadow md:p-4 sm:p-2">
     <div class="grid xl:grid-cols-3 md:grid-cols-1 xl:gap-4 md:gap-0">
-
       <div class="col-span-2">
-        <form class="space-y-6"
+        <form class="space-y-6 relative"
               [formGroup]="pushNotificationForm">
-          <label>Title</label>
+          <label class="font-bold tracking-tight text-gray-900">Title</label>
           <input type="text"
                  name="title"
                  id="title"
                  formControlName="title"
                  autocomplete="given-name"
                  class="mt-1 block p-2 border w-full rounded-md shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm sm:w-100">
+          <ng-container *ngIf="pushNotificationForm.controls['title'].value">
+            <button type="button"
+                    class="absolute button-title-clear mr-2 flex items-center"
+                    (click)="pushNotificationForm.controls['title'].setValue('')">
+              <i class="fa-duotone fa-circle-xmark"></i>
+            </button>
+          </ng-container>
           <p class="text-xs text-red-500 mt-2"
              *ngIf="!pushNotificationValid.title">Title is required</p>
-          <label>Body</label>
-          <textarea type="text"
-                    name="title"
-                    id="title"
-                    rows="5"
-                    formControlName="body"
-                    autocomplete="given-name"
-                    class="mt-1 mb-2 notification-body block p-2 border w-full rounded-md shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm sm:w-100"></textarea>
-
-          <p class="text-xs text-red-500 mt-2"
-             *ngIf="!pushNotificationValid.body">Title is required</p>
+          <div class="relative">
+            <label class="font-bold tracking-tight text-gray-900">Body</label>
+            <textarea type="text"
+                      name="title"
+                      id="title"
+                      rows="5"
+                      formControlName="body"
+                      autocomplete="given-name"
+                      class="mt-1 mb-2 notification-body block p-2 border w-full rounded-md shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm sm:w-100"></textarea>
+            <p class="text-xs text-red-500 mt-2"
+               *ngIf="!pushNotificationValid.body">Body is required</p>
+            <ng-container *ngIf="pushNotificationForm.controls['body'].value">
+              <button type="button"
+                      class="absolute button-body-clear mr-2 flex items-center"
+                      (click)="pushNotificationForm.controls['body'].setValue('')">
+                <i class="fa-duotone fa-circle-xmark"></i>
+              </button>
+            </ng-container>
+          </div>
         </form>
 
       </div>
@@ -39,6 +53,11 @@
                alt="">
           <div class="absolute z-100 flex justify-center notification-container">
             <div class="notification flex items-center">
+              <img src="https://i.imgur.com/89pwWSx.png"
+                   width="40px"
+                   height="40px"
+                   alt=""
+                   class="rounded-lg">
               <div class="info ml-4 w-100 mr-2">
                 <div class="flex justify-between items-center w-100">
                   <label class="font-medium text-[12px]"> {{pushNotificationForm.get('title')?.value}}</label>
@@ -57,6 +76,21 @@
                 class="bg-emerald-600 text-white active:bg-secondary text-sm font-bold px-6 py-2 rounded hover:bg-emerald-700 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
           Send notification</button>
       </div>
+    </div>
+    <div class="table-container relative mt-4">
+      <mp-loading [position]="'middle'"
+                  *ngIf="$searchLoading"></mp-loading>
+      <mp-skeleton-loading-table *ngIf="$isLoading; else loaded"
+                                 [totalNumberOfRows]="skeletonRow"
+                                 [columns]="notificationsColumnConfig"></mp-skeleton-loading-table>
+      <ng-template #loaded>
+        <mp-table [columnsConfig]="notificationsColumnConfig"
+                  [data]="$notifications"
+                  [editMode]="false"
+                  [customAction]="'message'"></mp-table>
+      </ng-template>
+      <mp-paginator [pagination]="pagination"
+                    (pageChange)="onChangePagination($event)"></mp-paginator>
     </div>
   </div>
 </div>

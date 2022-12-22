@@ -4,7 +4,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AdminGuard, IsLoggedInGuard } from './guards';
 import { throwIfAlreadyLoaded } from './module-import-guard';
-import { AnalyticsService, ApiService, AuthService, NavigationService } from './services';
+import { AdminService, ApiService, AuthService, NavigationService } from './services';
 import { HelperService } from './services/helper.service';
 import { NotificationService } from './services/notification.service';
 export const CORE_PROVIDERS = [
@@ -14,7 +14,7 @@ export const CORE_PROVIDERS = [
   NavigationService,
   NotificationService,
   HelperService,
-  AnalyticsService,
+  AdminService,
   ApiService
 ];
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AnalyticsService } from '../../../../core/services';
+import { AdminService } from '../../../../core/services';
 
 @Component({
   selector: 'mp-analytic',
@@ -17,7 +17,7 @@ export class AnalyticComponent implements OnInit {
   amountReservationsOverviewData: any;
   $isLoading = false;
   constructor(
-    private analyticsService: AnalyticsService
+    private adminService: AdminService,
   ) {}
   ngOnInit(): void {
     this.getAnalytics();
@@ -25,7 +25,7 @@ export class AnalyticComponent implements OnInit {
 
   getAnalytics() {
     this.$isLoading = true;
-    this.analyticsService.getAnalytics().subscribe((res: any) => {
+    this.adminService.getAnalytics().subscribe((res: any) => {
       if (res) {
         this.$isLoading = false;
         this.cardData = res.data.total;

@@ -15,8 +15,6 @@ import { UserManagementEditComponent } from './container/user-management-edit/us
   styleUrls: ['./user-management.component.scss']
 })
 export class UserManagementComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'email', 'joinDate', 'isSubscription', 'message', 'action'];
-
   userColumnsConfig = USER_COLUMNS_CONFIG;
 
   searchFilter: TableFilterModel = {
