@@ -128,26 +128,142 @@
                 </div>
                 <div class="relative flex justify-center">
                   <span class="px-3 bg-white text-sm text-gray-500">
-                    Services & Facilities
+                    Facilities
                   </span>
                 </div>
               </div>
-              <dl class="grid grid-cols-2 gap-x-6 text-sm pb-4 service-grid">
-                <div class="flex align-center flex-column">
+              <div class="flex flex-wrap w-full pl-8">
+                <div class="mr-3 item-facilities mb-2"
+                     *ngIf="propertyData.facilities.service.length > 0">
                   <label class="font-medium text-gray-900 mb-3 text-base">
                     <i class="fa-sharp fa-solid fa-bell-concierge text-emerald-600 text-[20px] mr-2"></i>Services</label>
                   <ng-container *ngFor="let item of propertyData.facilities.service">
-                    <dt class="mb-3">{{item}}</dt>
+                    <div class="flex align-center flex-column">
+                      <dt class="mb-3">{{item}}</dt>
+                    </div>
                   </ng-container>
                 </div>
-                <div class="flex align-center flex-column">
+                <div class="mr-3 item-facilities mb-2"
+                     *ngIf="!!propertyData.facilities.facilities">
                   <label class="font-medium text-gray-900 mb-3 text-base">
                     <i class="fa-solid fa-hotel text-emerald-600 text-[20px] mr-2"></i>Facilities</label>
                   <ng-container *ngFor="let item of propertyData.facilities.facilities">
-                    <dt class="mb-3">{{item}}</dt>
+                    <div class="flex align-center flex-column">
+                      <dt class="mb-3">{{item}}</dt>
+                    </div>
                   </ng-container>
                 </div>
-              </dl>
+                <div class="mr-3 item-facilities mb-2"
+                     *ngIf="!!propertyData.facilities.common">
+                  <label class="font-medium text-gray-900 mb-3 text-base">
+                    <i class="fa-solid fa-bags-shopping text-emerald-600 text-[20px] mr-2"></i>Common</label>
+                  <ng-container *ngFor="let item of propertyData.facilities.common">
+                    <div class="flex align-center flex-column">
+                      <dt class="mb-3">{{item}}</dt>
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="mr-3 item-facilities mb-2"
+                     *ngIf="!!propertyData.facilities.connectivity">
+                  <label class="font-medium text-gray-900 mb-3 text-base">
+                    <i class="fa-sharp fa-solid fa-wifi text-emerald-600 text-[20px] mr-2"></i>Connectivity</label>
+                  <ng-container *ngFor="let item of propertyData.facilities.connectivity">
+                    <div class="flex align-center flex-column">
+                      <dt class="mb-3">{{item}}</dt>
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="mr-3 item-facilities mb-2"
+                     *ngIf="!!propertyData.facilities.inside_room">
+                  <label class="font-medium text-gray-900 mb-3 text-base">
+                    <i class="fa-solid fa-booth-curtain text-emerald-600 text-[20px] mr-2"></i>Inside room</label>
+                  <ng-container *ngFor="let item of propertyData.facilities.inside_room">
+                    <div class="flex align-center flex-column">
+                      <dt class="mb-3">{{item}}</dt>
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="mr-3 item-facilities mb-2"
+                     *ngIf="!!propertyData.facilities.business">
+                  <label class="font-medium text-gray-900 mb-3 text-base">
+                    <i class="fa-solid fa-business-time text-emerald-600 text-[20px] mr-2"></i>Business</label>
+                  <ng-container *ngFor="let item of propertyData.facilities.business">
+                    <div class="flex align-center flex-column">
+                      <dt class="mb-3">{{item}}</dt>
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="mr-3 item-facilities mb-2"
+                     *ngIf="!!propertyData.facilities.nearby_amenities">
+                  <label class="font-medium text-gray-900 mb-3 text-base">
+                    <i class="fa-solid fa-bed-empty text-emerald-600 text-[20px] mr-2"></i>Nearby amenities</label>
+                  <ng-container *ngFor="let item of propertyData.facilities.nearby_amenities">
+                    <div class="flex align-center flex-column">
+                      <dt class="mb-3">{{item}}</dt>
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="mr-3 item-facilities mb-2"
+                     *ngIf="!!propertyData.facilities.accessibility">
+                  <label class="font-medium text-gray-900 mb-3 text-base">
+                    <i class="fa-brands fa-accessible-icon text-emerald-600 text-[20px] mr-2"></i>Accessibility</label>
+                  <ng-container *ngFor="let item of propertyData.facilities.accessibility">
+                    <div class="flex align-center flex-column">
+                      <dt class="mb-3">{{item}}</dt>
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="mr-3 item-facilities mb-2"
+                     *ngIf="!!propertyData.facilities.food_drinks">
+                  <label class="font-medium text-gray-900 mb-3 text-base">
+                    <i class="fa-solid fa-burger-soda text-emerald-600 text-[20px] mr-2"></i>Food & drinks</label>
+                  <ng-container *ngFor="let item of propertyData.facilities.food_drinks">
+                    <div class="flex align-center flex-column">
+                      <dt class="mb-3">{{item}}</dt>
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="mr-3 item-facilities mb-2"
+                     *ngIf="!!propertyData.facilities.transportation">
+                  <label class="font-medium text-gray-900 mb-3 text-base">
+                    <i class="fa-solid fa-car-building text-emerald-600 text-[20px] mr-2"></i>Transportation</label>
+                  <ng-container *ngFor="let item of propertyData.facilities.transportation">
+                    <div class="flex align-center flex-column">
+                      <dt class="mb-3">{{item}}</dt>
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="mr-3 item-facilities mb-2"
+                     *ngIf="!!propertyData.facilities.sport_recreations">
+                  <label class="font-medium text-gray-900 mb-3 text-base">
+                    <i class="fa-solid fa-water-ladder text-emerald-600 text-[20px] mr-2"></i>Sport recreations</label>
+                  <ng-container *ngFor="let item of propertyData.facilities.sport_recreations">
+                    <div class="flex align-center flex-column">
+                      <dt class="mb-3">{{item}}</dt>
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="mr-3 item-facilities mb-2"
+                     *ngIf="!!propertyData.facilities.things_to_do">
+                  <label class="font-medium text-gray-900 mb-3 text-base">
+                    <i class="fa-solid fa-circle-info text-emerald-600 text-[20px] mr-2"></i>Things to do</label>
+                  <ng-container *ngFor="let item of propertyData.facilities.things_to_do">
+                    <div class="flex align-center flex-column">
+                      <dt class="mb-3">{{item}}</dt>
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="mr-3 item-facilities mb-2"
+                     *ngIf="!!propertyData.facilities.traveling_w_others">
+                  <label class="font-medium text-gray-900 mb-3 text-base">
+                    <i class="fa-solid fa-route text-emerald-600 text-[20px] mr-2"></i>Traveling & others</label>
+                  <ng-container *ngFor="let item of propertyData.facilities.traveling_w_others">
+                    <div class="flex align-center flex-column">
+                      <dt class="mb-3">{{item}}</dt>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
 
             </div>
 
@@ -179,7 +295,7 @@
                   <div class="mt-4 mb-4 relative">
                     <div class="relative">
                       <span class="bg-white text-sm text-gray-500 font-bold">
-                        Price :{{roomType.price}} VND
+                        Price: {{roomType.price | currency: 'VND': 'symbol-narrow'}}
                       </span>
                     </div>
                   </div>

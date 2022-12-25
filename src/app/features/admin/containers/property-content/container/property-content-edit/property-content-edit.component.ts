@@ -12,6 +12,8 @@ export class PropertyContentEditComponent implements OnInit {
   $isLoading = true;
   propertyData!: any;
 
+  facilitiesLength: number = 0;
+
   avgRating: any = 0;
 
   constructor(
@@ -34,6 +36,7 @@ export class PropertyContentEditComponent implements OnInit {
         this.propertyData = el.data;
         this.$isLoading = false;
         this.avgRating = Math.round(Number(this.propertyData.avgRating) / 2);
+        this.facilitiesLength = Object.keys(this.propertyData.facilities).length;
       }
     });
   }
