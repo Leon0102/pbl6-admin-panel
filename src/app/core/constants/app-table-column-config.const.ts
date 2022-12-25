@@ -40,7 +40,7 @@ export const PROPERTY_COLUMNS_CONFIG: Array<ColumnConfig> = [
     sortedValue: (data) => data.name || '',
   },
   {
-    field: 'rating',
+    field: 'avgRating',
     label: 'Rating',
     width: '5%',
     alignCenter: true,

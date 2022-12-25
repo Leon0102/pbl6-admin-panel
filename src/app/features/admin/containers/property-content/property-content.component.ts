@@ -117,7 +117,7 @@ export class PropertyContentComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((data) => {
       console.log(data);
-      if (data !== 'false') {
+      if (data && data !== 'false') {
         this.propertyManagementService.verifyProperty(event.id).subscribe(res => {
           if (res) {
             this.getProperties(this.searchFilter);

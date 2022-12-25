@@ -12,7 +12,7 @@ export class PropertyContentEditComponent implements OnInit {
   $isLoading = true;
   propertyData!: any;
 
-  rating: number = 0;
+  avgRating: any = 0;
 
   constructor(
     public dialog: MatDialog,
@@ -33,7 +33,7 @@ export class PropertyContentEditComponent implements OnInit {
       if (el.data) {
         this.propertyData = el.data;
         this.$isLoading = false;
-        this.rating = Math.round(this.propertyData.rating / 2);
+        this.avgRating = Math.round(Number(this.propertyData.avgRating) / 2);
       }
     });
   }
