@@ -9,7 +9,9 @@
           <h2 id="order-heading"
               class="">{{propertyData.name}}</h2>
 
-          <h3 class="">{{propertyData.categoryId}}</h3>
+          <label class="mt-2 block text-base font-bold text-gray-700">
+            {{propertyData.categoryId}}
+          </label>
           <mp-property-image-swiper [images]="propertyData.photos"></mp-property-image-swiper>
 
           <div class="flex space-x-6">
@@ -119,7 +121,37 @@
                   </div>
                 </dl>
               </div>
+              <div class="mt-4 mb-4 relative">
+                <div class="absolute inset-0 flex items-center"
+                     aria-hidden="true">
+                  <div class="w-full border-t border-gray-300"></div>
+                </div>
+                <div class="relative flex justify-center">
+                  <span class="px-3 bg-white text-sm text-gray-500">
+                    Services & Facilities
+                  </span>
+                </div>
+              </div>
+              <dl class="grid grid-cols-2 gap-x-6 text-sm pb-4 service-grid">
+                <div class="flex align-center flex-column">
+                  <label class="font-medium text-gray-900 mb-3 text-base">
+                    <i class="fa-sharp fa-solid fa-bell-concierge text-emerald-600 text-[20px] mr-2"></i>Services</label>
+                  <ng-container *ngFor="let item of propertyData.facilities.service">
+                    <dt class="mb-3">{{item}}</dt>
+                  </ng-container>
+                </div>
+                <div class="flex align-center flex-column">
+                  <label class="font-medium text-gray-900 mb-3 text-base">
+                    <i class="fa-solid fa-hotel text-emerald-600 text-[20px] mr-2"></i>Facilities</label>
+                  <ng-container *ngFor="let item of propertyData.facilities.facilities">
+                    <dt class="mb-3">{{item}}</dt>
+                  </ng-container>
+                </div>
+              </dl>
+
             </div>
+
+
           </div>
 
           <div class="mt-4 mb-4 relative">
