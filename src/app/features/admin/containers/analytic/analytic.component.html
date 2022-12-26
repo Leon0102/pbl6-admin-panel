@@ -8,7 +8,7 @@
   <mp-stat-card *ngIf="!$isLoading"
                 iconUrl="https://img.icons8.com/color/96/null/banknotes.png"
                 title="Revenue"
-                stat="{{cardData.totalAmountReservations | currency: 'VND': 'symbol-narrow'}}"
+                stat="{{cardData.totalAmountReservations | number:'':'es'}} VND"
                 percent="{{cardData.percentAmountReservations}}"
                 [isGrowth]="cardData.percentAmountReservations > 0 ? true : false">
   </mp-stat-card>

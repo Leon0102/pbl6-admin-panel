@@ -1,3 +1,5 @@
+import { registerLocaleData } from '@angular/common';
+import es from '@angular/common/locales/es';
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../../../core/services';
 
@@ -20,6 +22,7 @@ export class AnalyticComponent implements OnInit {
     private adminService: AdminService,
   ) {}
   ngOnInit(): void {
+    registerLocaleData(es);
     this.getAnalytics();
   }
 

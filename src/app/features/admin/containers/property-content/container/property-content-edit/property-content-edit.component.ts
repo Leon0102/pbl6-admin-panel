@@ -1,3 +1,5 @@
+import { registerLocaleData } from '@angular/common';
+import es from '@angular/common/locales/es';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -27,6 +29,7 @@ export class PropertyContentEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    registerLocaleData(es);
     this.getPropertyDetail();
   }
 
