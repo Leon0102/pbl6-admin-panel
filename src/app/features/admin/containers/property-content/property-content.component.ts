@@ -84,7 +84,13 @@ export class PropertyContentComponent implements OnInit {
   }
 
   onSortChanged(event: any) {
-    this.searchFilter.order = event.sortType.toUpperCase();
+    if (event.sortBy = 'createdAt') {
+      this.searchFilter.createdAt = 'DESC';
+    }
+    if (event.sortBy = 'avgRating') {
+      this.searchFilter.order = event.sortType.toUpperCase();
+      this.searchFilter.sortBy = 'avgRating';
+    }
     this.getFilter();
     this.searchFilter.createdAt = event.sortType.toUpperCase();
     this.search();
