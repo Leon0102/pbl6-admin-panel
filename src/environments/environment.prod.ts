@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiURL: 'https://wanderlust.onrender.com/api',
+  apiURL: "https://wanderlust-api.tk/api",
 };

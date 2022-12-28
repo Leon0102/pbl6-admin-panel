@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL: 'https://wanderlust.onrender.com/api',
+  apiURL: "https://wanderlust-api.tk/api",
   // apiURL: 'http://localhost:3000/api',
 };
 
