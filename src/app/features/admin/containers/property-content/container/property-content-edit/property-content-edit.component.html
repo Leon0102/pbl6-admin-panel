@@ -134,7 +134,7 @@
               </div>
               <div class="flex flex-wrap w-full pl-8">
                 <div class="mr-3 item-facilities mb-2"
-                     *ngIf="propertyData.facilities.service.length > 0">
+                     *ngIf="!!propertyData.facilities.service">
                   <label class="font-medium text-gray-900 mb-3 text-base">
                     <i class="fa-sharp fa-solid fa-bell-concierge text-emerald-600 text-[20px] mr-2"></i>Services</label>
                   <ng-container *ngFor="let item of propertyData.facilities.service">
